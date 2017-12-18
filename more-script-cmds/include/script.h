@@ -22,5 +22,6 @@ struct ScriptContext
 #define ScriptReadByte(ctx) (*(ctx->scriptPtr++))
 u16 ScriptReadHalfword(struct ScriptContext *ctx);
 u32 ScriptReadWord(struct ScriptContext *ctx);
+void ScriptContext1_Stop(void);
 
 #endif // GUARD_SCRIPT_H

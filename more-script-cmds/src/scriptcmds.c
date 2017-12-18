@@ -63,7 +63,7 @@ void SetMonNature(struct Pokemon *mon, u8 nature)
 
 
 
-enum{
+enum {
 	SET_MON_DATA_MODE_READ_CONSTANT,
 	SET_MON_DATA_MODE_READ_VARS,
 	SET_MON_DATA_MODE_READ_CONST_PTR,
@@ -162,7 +162,9 @@ bool8 ScrCmd_BufferedMonDoAction(struct ScriptContext *ctx)
 			met_location = 0xFF;
 			gSpecialVar_0x8005 = 0;
 			SetMonData(mon, MON_DATA_MET_LOCATION, &met_location);
-			Special_TradeEnemyMon();			
+			Special_TradeEnemyMon();
+			ScriptContext1_Stop();
+			return true;	
 	}
 
 	return false;

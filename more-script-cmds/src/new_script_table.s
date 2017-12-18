@@ -233,7 +233,10 @@ NewScriptCmdTable:
 	.4byte ScrCmd_CreateMon					// 0xE5
 	.4byte ScrCmd_BufferedMonDoAction		// 0xE6
 	.4byte SrcCmd_VarRandom					// 0xE7
-	.4byte ScrCmd_nop						// 0xE8
+	.4byte SrcCmd_ExtendScripts				// 0xE8
+	.4byte SrcCmd_DistendScripts			// 0xE9
+	.4byte SrcCmd_LoadSprite				// 0xEA
+	.4byte SrcCmd_UnloadSprite				// 0xEB
 
 .global NewScriptCmdTableEnd
 NewScriptCmdTableEnd:

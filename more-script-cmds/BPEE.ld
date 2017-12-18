@@ -1,3 +1,15 @@
+CreateSprite = 0x08006df4|1;
+gSprites = 0x02020630;
+DestroySpriteAndFreeResources = 0x08007620|1;
+AllocZeroed = 0x08000b4c|1;
+Free = 0x08000b60|1;
+gDummySpriteAnimTable = 0x082ec69c;
+gDummySpriteAffineAnimTable = 0x082ec6a8;
+SpriteCallbackDummy = 0x08007428|1;
+LoadCompressedObjectPic = 0x08034530|1;
+LoadSpritePalette = 0x08008744|1;
+memset = 0x082e9434|1;
+
 
 __umodsi3 = 0x082e7be0|1;
 __modsi3 = 0x082e7650|1;
@@ -20,6 +32,7 @@ CopyMon = 0x0806b408|1;
 
 ScriptReadHalfword = 0x8098e0c|1;
 ScriptReadWord = 0x08098e24|1;
+ScriptContext1_Stop = 0x08098f30|1;
 gSpecialVar_Result = 0x020375f0;
 
 FlagGet = 0x0809d790|1;
