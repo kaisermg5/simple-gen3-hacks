@@ -1,7 +1,6 @@
 
-#include <types.h>
+#include <global.h>
 #include <flags.h>
-
 
 // Menu actions
 enum

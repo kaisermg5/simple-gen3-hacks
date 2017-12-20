@@ -95,8 +95,8 @@ NewScriptCmdTable:
 	.4byte ScrCmd_turnobject
 	.4byte ScrCmd_trainerbattle
 	.4byte ScrCmd_dotrainerbattle
-	.4byte ScrCmd_ontrainerbattleend
-	.4byte ScrCmd_ontrainerbattleendgoto
+	.4byte ScrCmd_gotopostbattlescript
+	.4byte ScrCmd_gotobeatenscript
 	.4byte ScrCmd_checktrainerflag
 	.4byte ScrCmd_settrainerflag
 	.4byte ScrCmd_cleartrainerflag
@@ -237,6 +237,11 @@ NewScriptCmdTable:
 	.4byte SrcCmd_DistendScripts			// 0xE9
 	.4byte SrcCmd_LoadSprite				// 0xEA
 	.4byte SrcCmd_UnloadSprite				// 0xEB
+	.4byte SrcCmd_CreateWindow				// 0xEC
+	.4byte SrcCmd_PrintTextOnWindow			// 0xED
+	.4byte ScrCmd_WindowDoAction			// 0xEE
+	.4byte SrcCmd_LoadMonSprite				// 0xEE
+
 
 .global NewScriptCmdTableEnd
 NewScriptCmdTableEnd:

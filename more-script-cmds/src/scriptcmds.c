@@ -1,10 +1,14 @@
 
 #include <global.h>
+#include <local_global.h>
 #include <script.h>
 #include <pokemon.h>
 #include <pokedex.h>
 #include <event_data.h>
+#include <random.h>
+#include <script_context_extension.h>
 
+extern void Special_TradeEnemyMon(void);
 
 static struct Pokemon* GetMonToModify(u8 mon_num)
 {
@@ -18,12 +22,18 @@ static struct Pokemon* GetMonToModify(u8 mon_num)
 // getmondata MON_NUM FIELD VAR1_NUM VAR2_NUM
 bool8 ScrCmd_GetMonData(struct ScriptContext *ctx)
 {
-	struct Pokemon *mon = GetMonToModify(ScriptReadByte(ctx));
-	u32 data = GetMonData(mon, ScriptReadByte(ctx), 0);
-	
-	VarSet(ScriptReadHalfword(ctx), (u16) data);
-	VarSet(ScriptReadHalfword(ctx), (u16) (data >> 16));
-	return false;
+	struct Pokemon *mon = GetMonToModify(VarGet(ScriptReadHalfword(ctx)));
+	u8 field = ScriptReadByte(ctx);
+	u16 var1 = ScriptReadHalfword(ctx);
+	u16 var2 = ScriptReadHalfword(ctx);
+	if (var1 > 2) {
+		u32 data = GetMonData(mon, field, 0);
+		VarSet(var1, (u16) data);
+		VarSet(var2, (u16) (data >> 16));
+	} else {
+		GetMonData(mon, field, sScriptStringVars[var1]);
+	}
+	return FALSE;
 }
 
 #define MOD_25_EQUALS_24 0x4f00
@@ -77,7 +87,7 @@ bool8 SrcCmd_SetMonData(struct ScriptContext *ctx)
 	u32 data;
 	u32 *data_ptr; 
 	u8 mode = ScriptReadByte(ctx);
-	u8 monNum = ScriptReadByte(ctx);
+	struct Pokemon *mon = GetMonToModify(VarGet(ScriptReadHalfword(ctx)));
 	u8 field = ScriptReadByte(ctx);
 	switch (mode) {
 		case SET_MON_DATA_MODE_READ_CONSTANT:
@@ -92,24 +102,24 @@ bool8 SrcCmd_SetMonData(struct ScriptContext *ctx)
 			data_ptr = (u32 *) ScriptReadWord(ctx);
 			break;
 		default:
-			return false;
+			return FALSE;
 	}
 
-	struct Pokemon *mon = GetMonToModify(monNum);
+	
 	if (field == MON_DATA_NATURE) {
 		 SetMonNature(mon, (u8) data);
 	} else {
 		SetMonData(mon, field, data_ptr);
 	}
 	CalculateMonStats(mon);
-	return false;
+	return FALSE;
 }
 
 bool8 ScrCmd_CreateMon(struct ScriptContext *ctx)
 {
-	struct Pokemon *mon = GetMonToModify(ScriptReadByte(ctx));
+	struct Pokemon *mon = GetMonToModify(VarGet(ScriptReadHalfword(ctx)));
 	u16 species = VarGet(ScriptReadHalfword(ctx));
-	u8 level = ScriptReadByte(ctx);
+	u8 level = VarGet(ScriptReadByte(ctx));
 	u8 fixedIV = ScriptReadByte(ctx);
 	u8 hasFixedPersonality = ScriptReadByte(ctx);
 	u32 fixedPersonality = ScriptReadWord(ctx);
@@ -117,7 +127,7 @@ bool8 ScrCmd_CreateMon(struct ScriptContext *ctx)
 	u32 fixedOtId = ScriptReadWord(ctx);
 
 	CreateMon(mon, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId);
-	return false;
+	return FALSE;
 }
 
 
@@ -164,10 +174,10 @@ bool8 ScrCmd_BufferedMonDoAction(struct ScriptContext *ctx)
 			SetMonData(mon, MON_DATA_MET_LOCATION, &met_location);
 			Special_TradeEnemyMon();
 			ScriptContext1_Stop();
-			return true;	
+			return TRUE;	
 	}
 
-	return false;
+	return FALSE;
 }
 
 
@@ -177,7 +187,7 @@ bool8 SrcCmd_VarRandom(struct ScriptContext *ctx)
 {
 	u16 *ptr = GetVarPointer(ScriptReadHalfword(ctx));
 	*ptr = (u16) __umodsi3(Random(), *ptr + 1);
-	return false;
+	return FALSE;
 }
 
 

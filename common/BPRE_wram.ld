@@ -1,0 +1,33 @@
+gStringVar1 = 0x02021cd0;
+gStringVar2 = 0x002021cf0;
+gStringVar3 =  0x02021d04;
+gStringVar4 = 0x02021d18;
+
+gSaveBlock2Ptr = 0x0300500c;
+gSprites = 0x0202063c;
+gPlayerParty = 0x02024284;
+gEnemyParty = 0x0202402c;
+gPlayerPartyCount = 0x02024029;
+gSpecialVar_Result = 0x020370d0;
+gSpecialVar_0x8000 = 0x020370b8;
+gSpecialVar_0x8001 = 0x020370ba;
+gSpecialVar_0x8002 = 0x020370bc;
+gSpecialVar_0x8003 = 0x020370be;
+gSpecialVar_0x8004 = 0x020370c0;
+gSpecialVar_0x8005 = 0x020370c2;
+gSpecialVar_0x8006 = 0x020370c4;
+gSpecialVar_0x8007 = 0x020370c6;
+gSpecialVar_0x8008 = 0x020370c8;
+gSpecialVar_0x8009 = 0x020370ca;
+gSpecialVar_0x800A = 0x020370cc;
+gSpecialVar_0x800B = 0x020370ce;
+gSpecialVar_Result = 0x020370d0;
+gSpecialVar_LastTalked = 0x020370d2;
+gSpecialVar_Facing = 0x020370d04;
+gSpecialVar_MonBoxId = 0x020370d6;
+gSpecialVar_MonBoxPos = 0x020370d8;
+gSpecialVar_0x8014 = 0x020370da;
+gSpecialVar_ContestCategory = 0x020370dc;
+gSpecialVar_ContestRank = 0x020370de;
+gSpecialVar_ItemId = 0x020370f0;
+

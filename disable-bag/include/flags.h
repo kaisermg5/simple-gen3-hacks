@@ -1,11 +1,12 @@
 #ifndef FLAGS_H
 #define FLAGS_H
 
-#define FLAG_SYS_BAG_GET         0x200
-
 
 // Emerald
 #ifdef BPEE
+
+#define FLAG_SYS_BAG_GET	     0x200
+
 
 #define FLAG_SYS_POKEMON_GET     0x860
 #define FLAG_SYS_POKEDEX_GET     0x861
@@ -15,6 +16,9 @@
 
 // Fire red
 #ifdef BPRE
+
+#define FLAG_SYS_BAG_GET	     0x200
+
 
 #define FLAG_SYS_POKEMON_GET     0x828
 #define FLAG_SYS_POKEDEX_GET     0x829
